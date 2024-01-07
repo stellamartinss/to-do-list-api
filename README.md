@@ -12,6 +12,9 @@ It uses sequelize as the ORM and MySQL database to store and retrive data.
 ## Prerequisites
 
 - Node.js version v14.19.3
+- npm
+- MySQL (Ensure the MySQL database is running)
+
 
 ## Installation
 
