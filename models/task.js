@@ -1,4 +1,7 @@
 'use strict';
+
+const User = require('./user');
+
 const {
   Model
 } = require('sequelize');
@@ -9,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      Task.belongsTo(User, { foreignKey: 'user_id' });
+    associate(models) {
+      Task.belongsTo(models.User, { foreignKey: 'user_id' });
     }
   }
   Task.init({
@@ -22,3 +25,4 @@ module.exports = (sequelize, DataTypes) => {
   });
   return Task;
 };
+

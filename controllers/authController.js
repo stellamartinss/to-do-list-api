@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const { User } = require('../models')
 
 const register = async (req, res) => {
-  const { email, password } = req.body
+  const { email, password, username } = req.body
 
   try {
     const existingUser = await User.findOne({ where: { email } })
@@ -13,8 +13,8 @@ const register = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10)
-    const newUser = await User.create({ email, password: hashedPassword })
-    const token = jwt.sign({ userId: newUser.id }, 'token', { expiresIn: '1h' })
+    const newUser = await User.create({ email, username: username, password: hashedPassword })
+    const token = jwt.sign({ userId: newUser.id }, 'my-key', { expiresIn: '1h' });
 
     res.status(201).json({ token })
   } catch (error) {
